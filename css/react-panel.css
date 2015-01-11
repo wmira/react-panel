@@ -1,0 +1,56 @@
+.rpanel-title-cont {
+    float:left;
+    font-weight: 400;
+    line-height:16px;
+    display:inline-block;
+    padding: 0px 0px 10px 0px;
+}
+
+.rpanel-container {
+    padding: 10px 20px 20px 20px;
+
+}
+.rpanel-title-icon {
+    padding-right: 4px;
+    color: #c4c4c4;
+    font-size:14px;
+    line-height:18px;
+    -webkit-font-smoothing: antialiased;
+}
+.rpanel-container {
+    background-color: #FFF;
+    border-top: 4px solid #e7eaec;
+    border-bottom: 1px solid #e7eaec;
+}
+.rpanel-header {
+    overflow:auto;
+}
+
+.rpanel-toolbox {
+    display: inline-block;
+    float: right;
+    margin-top: 0;
+    position: relative;
+    padding: 0px 0px 10px 0px;
+
+}
+
+.rpanel-toolbox > a {
+    margin-left: 5px;
+    color: #c4c4c4;
+    cursor: pointer;
+}
+
+.rpanel-header .rpanel-title {
+    font-size: 16px;
+    text-transform: uppercase !important;
+    font-weight: 700 !important;
+    vertical-align: middle;
+}
+.rpanel-title {
+    color: #4DB3A2 !important;
+}
+
+.rpanel-body {
+    padding: 20px;
+}
