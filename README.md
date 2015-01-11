@@ -3,7 +3,7 @@ react-panel
 
 A Panel component written in React.
 
-[Click here for the demo](https://wmira.github.io/react-datatable) or see index.html for usage.
+[Click here for the demo](https://wmira.github.io/react-panel) or see index.html for usage.
 
 ## Development
 
