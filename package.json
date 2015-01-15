@@ -25,6 +25,7 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "dom-delegate": "^2.0.3",
     "jsx-loader": "^0.12.2",
     "react": "^0.12.2",
     "react-render-wrapper": "^1.0.2"

@@ -77,8 +77,16 @@
         alert("on click: " + e.target.getAttribute("data-action-name"));
     };
     
-    var Panel3 = Panel.render({ titleIcon: "fa fa-bar-chart", clickListener:actionListener, toolbox: toolboxActions, contentStr:document.getElementById("content1").innerHTML, title:
+    var panel3 = Panel.render({ titleIcon: "fa fa-bar-chart", clickListener:actionListener, toolbox: toolboxActions, contentStr:document.getElementById("content1").innerHTML, title:
             "Panel Toolbox Demo"},"panel3");
+    
+    panel3.on("click","a > .fa-refresh",function() {
+        alert("refresh");
+    });
+
+    panel3.on("click","a > .fa-chevron-down",function() {
+        alert("hide");
+    });
     
 </script>
 

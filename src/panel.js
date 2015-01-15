@@ -5,6 +5,8 @@
 
 var React = require("react");
 var ReactWrapper = require("react-render-wrapper");
+var Delegate =  require("dom-delegate");
+
 
 var createToolboxActions = function(props) {
     var toolboxDefs =props.toolbox || [];
@@ -74,6 +76,15 @@ var Body = React.createClass({
     }
 });
 
+
+/**
+ * 
+ * 
+ * 
+
+ *  
+ * @type {*|Function}
+ */
 var Panel = React.createClass({
 
     _clickListener : function(e) {
@@ -81,9 +92,15 @@ var Panel = React.createClass({
             this.props.clickListener(e);
         }
     },
+    componentWillUnmount : function() {
+        this.state.delegate.destroy();
+    },
+    /**
+     * Attach delegates
+     *
+     */
     componentDidMount : function() {
-
-        this.getDOMNode().addEventListener("click", this._clickListener);
+        this.setState({delegate :new  Delegate(this.getDOMNode())});
     },
     /**
      *
@@ -101,6 +118,25 @@ var Panel = React.createClass({
 
     bodyEl : function() {
         return this.refs['body'].refs['el'].getDOMNode();
+    },
+
+    /**
+     * 
+     *  
+     * @param eventType
+     * @param selector
+     * @param handler
+     * @param useCapture
+     */
+    on : function(eventType, selector, handler, useCapture) {
+        this.state.delegate.on(eventType,selector,handler,useCapture);
+    },
+
+    /**
+     *
+     */
+    off :  function(eventType, selector, handler, useCapture) {
+        this.state.delegate.off(eventType,selector,handler,useCapture);
     }
 });
 
