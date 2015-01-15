@@ -1,6 +1,6 @@
 {
   "name": "react-panel",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A Panel component written in React",
   "main": "js/react-panel.js",
   "author": "Warren Mira <warrenmira@gmail.com>",
