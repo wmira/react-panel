@@ -68,7 +68,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var toolboxDefs =props.toolbox || [];
 
 	    return toolboxDefs.map( function(toolbox)   {
-
 	        return (React.createElement("a", {key: toolbox["data-action-name"]}, React.createElement("i", React.__spread({},  toolbox))))
 	    });
 	}
@@ -118,11 +117,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        } else if ( reactEl ) {
 	            content = reactEl;
 	        } else if ( htmlStr !== undefined ) {
-	            content = React.createElement("div", {dangerouslySetInnerHTML: {__html: htmlStr}}) 
+	            content = React.createElement("div", {ref: "el", dangerouslySetInnerHTML: {__html: htmlStr}})
 	        } else {
-	            content =
-	            (React.createElement("div", {ref: "el"}
-	            ))
+	            content = React.createElement("div", {ref: "el"})
 	            
 	        }
 	        
@@ -193,13 +190,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	     */
 	    off :  function(eventType, selector, handler, useCapture) {
 	        this.state.delegate.off(eventType,selector,handler,useCapture);
+	    },
+
+	    /**
+	     * Finds and returns the element at the given bodyEl.
+	     *
+	     *  
+	     * @param selector
+	     */
+	    el : function(selector) {
+	        
+	        var bodyEl = this.bodyEl();
+	        
+	        if ( bodyEl) {
+	            return bodyEl.querySelector(selector);
+	        }
+	        
 	    }
+	    
 	});
 
 	module.exports = ReactWrapper(React,Panel);
 
-	/*<a href=""><i className={"fa fa-refresh"}></i></a>
-	 <a href=""><i className={"fa fa-chevron-down"}></i></a> */
+
 
 /***/ },
 /* 1 */

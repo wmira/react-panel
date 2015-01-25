@@ -12,7 +12,6 @@ var createToolboxActions = function(props) {
     var toolboxDefs =props.toolbox || [];
 
     return toolboxDefs.map( (toolbox)  => {
-
         return (<a key={toolbox["data-action-name"]}><i {...toolbox}></i></a>)
     });
 }
@@ -62,11 +61,9 @@ var Body = React.createClass({
         } else if ( reactEl ) {
             content = reactEl;
         } else if ( htmlStr !== undefined ) {
-            content = <div dangerouslySetInnerHTML={{__html: htmlStr}} /> 
+            content = <div ref="el" dangerouslySetInnerHTML={{__html: htmlStr}} />
         } else {
-            content =
-            (<div ref={"el"}>
-            </div>)
+            content = <div ref={"el"}></div>
             
         }
         
@@ -137,10 +134,25 @@ var Panel = React.createClass({
      */
     off :  function(eventType, selector, handler, useCapture) {
         this.state.delegate.off(eventType,selector,handler,useCapture);
+    },
+
+    /**
+     * Finds and returns the element at the given bodyEl.
+     *
+     *  
+     * @param selector
+     */
+    el : function(selector) {
+        
+        var bodyEl = this.bodyEl();
+        
+        if ( bodyEl) {
+            return bodyEl.querySelector(selector);
+        }
+        
     }
+    
 });
 
 module.exports = ReactWrapper(React,Panel);
 
-/*<a href=""><i className={"fa fa-refresh"}></i></a>
- <a href=""><i className={"fa fa-chevron-down"}></i></a> */

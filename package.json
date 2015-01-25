@@ -1,13 +1,13 @@
 {
   "name": "react-panel",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A Panel component written in React",
   "main": "js/react-panel.js",
   "author": "Warren Mira <warrenmira@gmail.com>",
   "scripts": {
     "build": "webpack src/panel.js js/react-panel.js",
     "build-min": "NODE_ENV=production COMPRESS=1 webpack src/panel.js js/react-panel.min.js",
-    "watch": "webpack src/panel.js js/react-panel.js --watch"
+    "watch": "webpack src/panel.js example/js/react-panel.js --watch"
   },
   "repository": {
     "type": "git",
