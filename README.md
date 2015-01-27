@@ -39,5 +39,19 @@ A Panel component written in React.
     panel3.on("click","a > .fa-chevron-down",function() {
         alert("hide");
     });
+    
+    //Render a react component as body
+    React.render(
+        <Panel.cls title="React Component Body Example">
+            <div style={{'fontWeight': 'bold' }}>This is a react component.</div>
+        </Panel.cls>,
+                document.getElementById("panel4")
+    )
 ```
+
+Changelog
+----------
+
+##### 0.0.4
+- Body can now be composed using <Panel.cls></Panel>
 

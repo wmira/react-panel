@@ -15,6 +15,7 @@
     </style>
     <link href="css/react-panel.css" rel="stylesheet">
     <script src="http://fb.me/react-0.12.2.js"></script>
+    <script src="http://fb.me/JSXTransformer-0.12.2.js"></script>
     <script src="js/react-panel.js"></script>
 </head>
 <body style="margin: 40px;">
@@ -63,7 +64,7 @@
     </form>
 </script>
 
-<script language="javascript">
+<script type="text/jsx">
     
     var panel1 = Panel.render({ contentStr:document.getElementById("content1").innerHTML, title: "Panel Demo 1"},"panel1");
     var panel2 = Panel.render({ contentStr:document.getElementById("content2").innerHTML, title: "Enter Some Form Values"},"panel2");
@@ -87,6 +88,13 @@
     panel3.on("click","a > .fa-chevron-down",function() {
         alert("hide");
     });
+    
+    React.render(
+    <Panel.cls title="React Component Body Example">
+        <div style={{'fontWeight': 'bold' }}>This is a react component.</div>
+    </Panel.cls>,
+            document.getElementById("panel4")
+    )
     
 </script>
 

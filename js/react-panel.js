@@ -107,22 +107,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	    
 	    render : function() {
 	        
-	        var reactEl = this.props.contentEl;
+	        var reactEl = this.props.contentEl || this.props.children;
 	        var htmlStr = this.props.contentStr;
-	        
+
 	        var content = null;
-	        
-	        if ( reactEl && (htmlStr !== undefined) ) {
-	            return (React.createElement("span", null, "reactEl or htmlStr, only one should be set not both."));
-	        } else if ( reactEl ) {
-	            content = reactEl;
-	        } else if ( htmlStr !== undefined ) {
+
+	        if ( reactEl && reactEl.length > 0  && (htmlStr !== undefined) ) {
+	            content =  (React.createElement("span", null, "You can't have children and htmlStr as body at the same time."));
+	        } else if ( htmlStr !== undefined  ) {
 	            content = React.createElement("div", {ref: "el", dangerouslySetInnerHTML: {__html: htmlStr}})
+	        } else if (  reactEl  ) {
+	            content = reactEl;
 	        } else {
 	            content = React.createElement("div", {ref: "el"})
-	            
 	        }
-	        
+
 	        return (React.createElement("div", {style: this.props.style, className: "rpanel-body"}, 
 	            content
 	        ))
@@ -164,7 +163,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return (
 	            React.createElement("div", {className: "rpanel-container"}, 
 	                React.createElement(Header, React.__spread({},  this.props)), 
-	                React.createElement(Body, {style: this.props.style, contentEl: this.props.contentEl, contentStr: this.props.contentStr, ref: "body"})
+	                React.createElement(Body, React.__spread({},  this.props, {ref: "body"})
+	                )
 	            )
 	        )
 	    },

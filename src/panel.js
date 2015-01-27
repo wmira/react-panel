@@ -51,22 +51,21 @@ var Body = React.createClass({
     
     render : function() {
         
-        var reactEl = this.props.contentEl;
+        var reactEl = this.props.contentEl || this.props.children;
         var htmlStr = this.props.contentStr;
-        
+
         var content = null;
-        
-        if ( reactEl && (htmlStr !== undefined) ) {
-            return (<span>{"reactEl or htmlStr, only one should be set not both."}</span>);
-        } else if ( reactEl ) {
-            content = reactEl;
-        } else if ( htmlStr !== undefined ) {
+
+        if ( reactEl && reactEl.length > 0  && (htmlStr !== undefined) ) {
+            content =  (<span>{"You can't have children and htmlStr as body at the same time."}</span>);
+        } else if ( htmlStr !== undefined  ) {
             content = <div ref="el" dangerouslySetInnerHTML={{__html: htmlStr}} />
+        } else if (  reactEl  ) {
+            content = reactEl;
         } else {
             content = <div ref={"el"}></div>
-            
         }
-        
+
         return (<div style={this.props.style} className="rpanel-body">
             {content}
         </div>)
@@ -108,7 +107,8 @@ var Panel = React.createClass({
         return (
             <div className="rpanel-container">
                 <Header {...this.props}  />
-                <Body style={this.props.style} contentEl={this.props.contentEl} contentStr={this.props.contentStr} ref={"body"} />
+                <Body {...this.props} ref={"body"}>
+                </Body>
             </div>
         )
     },
