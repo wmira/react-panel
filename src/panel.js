@@ -14,7 +14,8 @@ var createToolboxActions = function(props) {
     return toolboxDefs.map( (toolbox)  => {
         return (<a key={toolbox["data-action-name"]}><i {...toolbox}></i></a>)
     });
-}
+};
+
 var Header = React.createClass({
 
     render : function() {
@@ -39,12 +40,14 @@ var Header = React.createClass({
     }
 });
 
-/*
-var ToolBox = React.createClass({
-    
-    
-});
-*/
+
+/**
+ * 
+ * Checks contentEl or Children or htmlStr props.
+ *
+ *  
+ * @type {*|Function}
+ */
 var Body = React.createClass({
     
    
@@ -90,6 +93,7 @@ var Panel = React.createClass({
     },
     componentWillUnmount : function() {
         this.state.delegate.destroy();
+        this.getDOMNode().removeEventListener("click",this._clickListener);
     },
     /**
      * Attach delegates
@@ -97,6 +101,7 @@ var Panel = React.createClass({
      */
     componentDidMount : function() {
         this.setState({delegate :new  Delegate(this.getDOMNode())});
+        this.getDOMNode().addEventListener("click",this._clickListener);
     },
     /**
      *
@@ -156,3 +161,22 @@ var Panel = React.createClass({
 
 module.exports = ReactWrapper(React,Panel);
 
+
+/*
+var P = React.createClass({
+    
+    
+    render: function() {
+        
+        
+        return (
+            <Panel >
+                <Header title={} subTitle={} actionIcons={}></Header>
+                <Body></Body>
+                <Footer></Body>
+            </Panel>
+        );
+        
+    }
+    
+});*/
