@@ -60,8 +60,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	var React = __webpack_require__(1);
-	var ReactWrapper = __webpack_require__(2);
-	var Delegate =  __webpack_require__(3);
+	var ReactWrapper = __webpack_require__(3);
+	var Delegate =  __webpack_require__(2);
 
 
 	var createToolboxActions = function(props) {
@@ -70,7 +70,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return toolboxDefs.map( function(toolbox)   {
 	        return (React.createElement("a", {key: toolbox["data-action-name"]}, React.createElement("i", React.__spread({},  toolbox))))
 	    });
-	}
+	};
+
 	var Header = React.createClass({displayName: "Header",
 
 	    render : function() {
@@ -95,12 +96,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	});
 
-	/*
-	var ToolBox = React.createClass({
-	    
-	    
-	});
-	*/
+
+	/**
+	 * 
+	 * Checks contentEl or Children or htmlStr props.
+	 *
+	 *  
+	 * @type {*|Function}
+	 */
 	var Body = React.createClass({displayName: "Body",
 	    
 	   
@@ -146,6 +149,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    componentWillUnmount : function() {
 	        this.state.delegate.destroy();
+	        this.getDOMNode().removeEventListener("click",this._clickListener);
 	    },
 	    /**
 	     * Attach delegates
@@ -153,6 +157,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     */
 	    componentDidMount : function() {
 	        this.setState({delegate :new  Delegate(this.getDOMNode())});
+	        this.getDOMNode().addEventListener("click",this._clickListener);
 	    },
 	    /**
 	     *
@@ -213,6 +218,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = ReactWrapper(React,Panel);
 
 
+	/*
+	var P = React.createClass({
+	    
+	    
+	    render: function() {
+	        
+	        
+	        return (
+	            <Panel >
+	                <Header title={} subTitle={} actionIcons={}></Header>
+	                <Body></Body>
+	                <Footer></Body>
+	            </Panel>
+	        );
+	        
+	    }
+	    
+	});*/
 
 /***/ },
 /* 1 */
@@ -222,6 +245,31 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/*jshint browser:true, node:true*/
+
+	'use strict';
+
+	/**
+	 * @preserve Create and manage a DOM event delegator.
+	 *
+	 * @version 0.3.0
+	 * @codingstandard ftlabs-jsv2
+	 * @copyright The Financial Times Limited [All Rights Reserved]
+	 * @license MIT License (see LICENSE.txt)
+	 */
+	var Delegate = __webpack_require__(4);
+
+	module.exports = function(root) {
+	  return new Delegate(root);
+	};
+
+	module.exports.Delegate = Delegate;
+
+
+/***/ },
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*globals require,module,React */
@@ -292,31 +340,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	module.exports = RenderWrapper;
-
-
-/***/ },
-/* 3 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/*jshint browser:true, node:true*/
-
-	'use strict';
-
-	/**
-	 * @preserve Create and manage a DOM event delegator.
-	 *
-	 * @version 0.3.0
-	 * @codingstandard ftlabs-jsv2
-	 * @copyright The Financial Times Limited [All Rights Reserved]
-	 * @license MIT License (see LICENSE.txt)
-	 */
-	var Delegate = __webpack_require__(4);
-
-	module.exports = function(root) {
-	  return new Delegate(root);
-	};
-
-	module.exports.Delegate = Delegate;
 
 
 /***/ },
